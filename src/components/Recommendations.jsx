@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { BookmarkIcon } from "lucide-react-native";
-
+import CustomButtons from "./CustomButtons";
+import { Redirect, router } from "expo-router";
 const CARD_WIDTH = 288;
 const CARD_MARGIN = 16;
 
@@ -29,9 +30,10 @@ const JobCard = ({ job, isActive }) => (
     <Text className="text-gray-500 mb-4">{job.type}</Text>
 
     <View className="flex-row justify-between items-center">
-      <TouchableOpacity className="bg-blue-600 px-6 py-3 rounded-lg">
-        <Text className="text-white font-bold">Apply Now</Text>
-      </TouchableOpacity>
+      <CustomButtons
+        title={`Apply Now`}
+        handlePress={() => router.push("/JobDescription")}
+      />
       <Text className="font-bold text-base mt-1">
         {job.salary}
         <Text className=" text-sm !text-gray-500">/Month</Text>
@@ -40,7 +42,7 @@ const JobCard = ({ job, isActive }) => (
   </View>
 );
 
-const Recommendations = () => {
+const RecommeNdations = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
 
@@ -100,4 +102,4 @@ const Recommendations = () => {
   );
 };
 
-export default Recommendations;
+export default RecommeNdations;
