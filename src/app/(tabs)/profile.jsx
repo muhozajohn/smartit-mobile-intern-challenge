@@ -38,7 +38,7 @@ const Profile = () => {
           </View>
         </View>
 
-        <View className="mt-6 w-full">
+        <View className="mt-6  w-full">
           <Text className="text-secondary font-pbold text-2xl mb-2">Bio</Text>
           <Text className="text-gray-700 font-pregular text-base leading-6">
             I'm a Full-Stack Engineer, mobile app developer,and UI/UX Designer
