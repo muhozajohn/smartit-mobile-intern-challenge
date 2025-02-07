@@ -1,8 +1,7 @@
-
 import React from "react";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-
+import "../../../global.css";
 const JobLayout = () => {
   return (
     <>
@@ -11,7 +10,6 @@ const JobLayout = () => {
         <Stack.Screen name="Recommendations" options={{ headerShown: false }} />
       </Stack>
       <StatusBar backgroundColor="#161622" style="light" />
-
     </>
   );
 };
