@@ -3,7 +3,7 @@ import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import Header from "../../components/Header";
-import Recommendations from "../../components/Recommendations";
+import RecommeNdations from "../../components/Recommendations";
 import RecentJob from "../../components/RecentJob";
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
     <SafeAreaView className="!h-full">
       <ScrollView contentContainerStyle={{ height: "100%" }}>
         <Header />
-        <Recommendations />
+        <RecommeNdations />
         <RecentJob />
       </ScrollView>
       <StatusBar backgroundColor="#161622" style="light" />
