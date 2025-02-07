@@ -1,119 +1,53 @@
-import { View, Text, Image } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
-import { icons } from "../../constants";
+import { Home, ChartLine, Heart, User } from "lucide-react-native";
 
-const TabIcon = ({ icon, color, name, focused }) => {
-  return (
-    <View className="items-center justify-center gap-2">
-      <Image
-        source={icon}
-        resizeMode="contain"
-        tintColor={color}
-        className="w-6 h-6"
-      />
-      <Text
-        className={`${
-          focused ? " font-psemibold " : " font-pregular "
-        } text-xs `}
-        style={{ color: color }}
-      >
-        {name}
-      </Text>
-    </View>
-  );
+const TabIcon = React.memo(({ Icon, focused }) => (
+  <View className="flex items-center justify-center  mt-10 h-full w-full">
+    <Icon
+      size={28}
+      color={focused ? "#161622" : "#9CA3AF"}
+      strokeWidth={focused ? 2.5 : 2}
+    />
+  </View>
+));
+
+const tabs = [
+  { name: "home", title: "Home", Icon: Home },
+  { name: "statistics", title: "Statistics", Icon: ChartLine },
+  { name: "applications", title: "Saved", Icon: Heart },
+  { name: "profile", title: "Profile", Icon: User },
+];
+const tabBarStyle = {
+  backgroundColor: "white",
+  height: 80,
+  borderTopWidth: 1,
+  borderTopColor: "#D1D5DB",
+  position: "absolute",
+  bottom: 0,
 };
-
 const TabsLayout = () => {
   return (
     <Tabs
       screenOptions={{
         tabBarShowLabel: false,
-        tabBarActiveTintColor: "#4169E1", 
-        tabBarInactiveTintColor: "#CDCDE0",
-        tabBarStyle: {
-          backgroundColor: "#161622",
-          borderTopWidth: 1,
-          borderTopColor: "#232533",
-          height: 84,
-        },
+        tabBarStyle,
+        headerShown: false,
       }}
     >
-      <Tabs.Screen
-        name="home"
-        options={{
-          title: "Home",
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.home}
-              color={color}
-              name="Home"
-              focused={focused}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="search"
-        options={{
-          title: "Search",
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.search}
-              color={color}
-              name="Search"
-              focused={focused}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="applications"
-        options={{
-          title: "Applications",
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.document}
-              color={color}
-              name="Applications"
-              focused={focused}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="bookmark"
-        options={{
-          title: "Saved Jobs",
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.bookmark}
-              color={color}
-              name="Saved"
-              focused={focused}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: "Profile",
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.profile}
-              color={color}
-              name="Profile"
-              focused={focused}
-            />
-          ),
-        }}
-      />
+      {tabs.map(({ name, title, Icon }) => (
+        <Tabs.Screen
+          key={name}
+          name={name}
+          options={{
+            title,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon Icon={Icon} focused={focused} />
+            ),
+          }}
+        />
+      ))}
     </Tabs>
   );
 };
